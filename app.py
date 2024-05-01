@@ -1,17 +1,10 @@
-'''
-	Contoh Deloyment untuk Domain Computer Vision (CV)
-	Orbit Future Academy - AI Mastery - KM Batch 3
-	Tim Deployment
-	2022
-'''
-
 # =[Modules dan Packages]========================
 
 from flask import Flask,render_template,request,jsonify
 from flask_ngrok import run_with_ngrok
 from werkzeug.utils import secure_filename
 import pandas as pd
-import numpy as np
+#import numpy as np
 import os
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
@@ -19,6 +12,10 @@ from tensorflow.keras.layers import Conv2D, MaxPooling2D, MaxPool2D, \
 Flatten, Dense, Activation, Dropout,LeakyReLU
 from PIL import Image
 from fungsi import make_model
+from tensorflow.keras import datasets, layers, models
+from keras.preprocessing.image import ImageDataGenerator
+
+from pyngrok import ngrok
 
 # =[Variabel Global]=============================
 
@@ -95,6 +92,15 @@ def apiDeteksi():
 				"gambar_prediksi" : gambar_prediksi
 			})
 
+
+
+ngrok.set_auth_token("2fnxh5E5P2cDaDhiufUSsKIgelz_3w25LDbMxPzubbMQKFgXx")
+port_no = 5000
+public_url =  ngrok.connect(port_no).public_url
+app.run(port=port_no)
+
+print(f"To acces the Gloable link please click {public_url}")
+
 # =[Main]========================================		
 
 if __name__ == '__main__':
@@ -105,7 +111,6 @@ if __name__ == '__main__':
 
 	# Run Flask di localhost 
 	run_with_ngrok(app)
-	app.run()
 	
 	
 
