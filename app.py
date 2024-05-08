@@ -4,7 +4,7 @@ from flask import Flask,render_template,request,jsonify
 from flask_ngrok import run_with_ngrok
 from werkzeug.utils import secure_filename
 import pandas as pd
-#import numpy as np
+import numpy as np
 import os
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
