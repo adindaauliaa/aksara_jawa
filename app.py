@@ -14,6 +14,7 @@ from PIL import Image
 from fungsi import make_model
 from tensorflow.keras import datasets, layers, models
 from keras.preprocessing.image import ImageDataGenerator
+import sys
 
 from pyngrok import ngrok
 
@@ -108,10 +109,9 @@ if __name__ == '__main__':
 	# Load model yang telah ditraining
 	model = make_model()
 	model.load_weights("model_AksaraJawa20_cnn_tf.h5")
+if model is None:
+	print("Failed to load model")
+	sys.exit()
 
 	# Run Flask di localhost 
 	run_with_ngrok(app)
-	
-	
-
-
